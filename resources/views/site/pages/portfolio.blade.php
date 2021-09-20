@@ -1,0 +1,54 @@
+@extends('site.layouts.template')
+
+@section('content')
+<div>
+    @include('site.layouts.partials.navbar');
+</div>
+<br><br><br>
+
+
+    @include('site.layouts.partials.carousel')
+
+<br>
+<div class="container">
+
+
+<!-- CANALES -->
+    @foreach ($categories as $category)
+        {{--Ocultar categoria de favoritos--}}
+        @if($category -> name =="Favorites")
+            @continue
+        @endif
+        <br>
+        <h3 style="color: {{ session('textCategoryColor') }}">{{ $category -> name }}</h3>
+        <div class="row slider">
+            @foreach ($channels as $channel)
+                @if ($channel-> genre_id == $category-> id)
+                    <div>
+                        <a href="{{ url('player/?channel='.$channel->stream_url) }}" class="btn"  name="url" >
+                            {{-- <img src="{{$channel -> icon_url}}" class="img-fluid mx-auto d-block" alt="img1" style="width: 150px; height:150;"> --}}
+                            <img src="{{ $channel -> icon_url }}" class="img-fluid" alt="Imagen No Disponible"  width="150" height="150">
+                        </a>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+    @endforeach 
+<!-- ------- -->
+
+<!-- CARRUSEL PLATAFORMAS DIGITALES-->
+    <h3 style="color: {{ session('textCategoryColor') }}" >Plataformas Digitales</h3>
+    <div class="row slider">
+        @foreach ( session('platforms') as $platform)
+            <div>
+                <a href="{{ $platform->link }}" target="_blank" class="btn" name="url">
+                    <img src="{{ asset($platform->logo) }}" class="img-fluid" alt="Girl in a jacket" width="150" height="150">
+                </a>
+            </div>
+        @endforeach
+    </div>
+<!-- ------- -->
+</div>
+
+
+@endsection
