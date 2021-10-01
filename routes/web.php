@@ -31,15 +31,19 @@ use App\Banner;
         
         //Cerrar sesion
         Route::get('/logout', 'AccountController@logout')->name('closeSesion');
+
+        //Route::get('portfolio', 'ChannelController@allCategories')->name('portfolio');
     
+
     /* ----- Portfolio --------- */
-        Route::get('portfolio', 'PortfolioController@show')->name('portfolio');
+       Route::get('portfolio', 'PortfolioController@show')->name('portfolio');
 
     /* ----- Player ------------ */
-        Route::get('/player', 'PlayerController@getPlayer')->name('player');
-        Route::post('/player','PlayerController@filterCategory')->name('filter');
+       // Route::get('/player', 'PlayerController@getPlayer')->name('player');*/
+       // Route::post('/player','PlayerController@filterCategory')->name('filter');
 
 /* ================================================= */
+Route::post('/player','PlayerController@filterCategory')->name('filter');
 
 
 /* ==================== Backend ===================== */

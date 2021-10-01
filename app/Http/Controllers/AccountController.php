@@ -23,8 +23,6 @@ use App\StyleLogin;
 use Auth;
 use Cookie;
 use Session;
-//use Alert;
-
 
 
 class AccountController extends Controller
@@ -57,6 +55,7 @@ class AccountController extends Controller
            
             'base_uri' => 'https://micable.instel.site:4433/',
             'timeout'  => 20,
+            'verify'  => false,
         ]);
         
         
@@ -131,19 +130,17 @@ class AccountController extends Controller
                         'imgBanner' => $banner,
                         'platforms' => $plataformas,
                         'rs' => $rs
-                    ]);
-                    
+                    ]);  
                 }
 
-                //return view('site.pages.portfolio');
-               // Alert::message('Robots are working!');
                alert('Bienvenido','Has iniciado sesión ', 'success');
                 return redirect()->route('portfolio');
+               
 
             }
             else
             {
-                //alert()->error('Usuario y/o password no existen', 'Credenciales Invalidas');
+                alert()->error('Usuario y/o password no existen', 'Credenciales Invalidas');
                 return back();  
             }
 
@@ -170,6 +167,7 @@ class AccountController extends Controller
            
            'base_uri' => 'https://micable.instel.site:4433/',
             'timeout'  => 6.0,
+            
         ]);
 
 
